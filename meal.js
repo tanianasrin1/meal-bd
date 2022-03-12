@@ -1,3 +1,12 @@
+var searchBtn = document.getElementById("button-search");
+var searchInput = document.getElementById("search-field");
+
+searchInput.addEventListener("keypress", function(event) {
+  // event.preventDefault();
+  if (event.key == 'Enter')
+  searchBtn.click();
+});
+
 const searchFood = () =>{
     const searchField = document.getElementById('search-field')
     const searchText = searchField.value;
@@ -42,7 +51,7 @@ const loadMealDetail = mealId => {
   const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
   fetch(url)
   .then(res => res.json())
-  .then(data => displayMealDetail(data.meals[0]))
+  .then(data => displayMealDetail(data.meals))
 }
 
 const displayMealDetail = meal => {
@@ -58,7 +67,7 @@ const displayMealDetail = meal => {
     <p class="card-text">${meal.strInstructions.slice(0, 200)}</p>
     <a href="${meal.strYoutube}" class="btn btn-primary">Go somewhere</a>
   </div>
-  `;
+  `
   mealDetail.appendChild(div);
 
 }
